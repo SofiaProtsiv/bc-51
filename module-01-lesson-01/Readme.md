@@ -31,6 +31,16 @@ function calculateBMI(weight, height){
 console.log(calculateBMI('88,3', '1.75')); // 28.7
 ```
 
+3. Перше століття охоплює період з 1-го по 100-й рік включно, друге - з 101-го по 200-й рік включно і т.д. За заданим роком повернути століття, в якому він знаходиться.
+```js
+function centuryFromYear(year){
+    ...
+}
+console.log(centuryFromYear(1705))  // 18
+console.log(centuryFromYear(1900))  // 19
+console.log(centuryFromYear(1601))  // 17
+console.log(centuryFromYear(2000))  // 20
+```
 ## Блок 2 - Робота з рядками, методи рядків
 
 1. Перевірь чи `param` є рядком. Результатом виконання функції має бути `true` або `false`
