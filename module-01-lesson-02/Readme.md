@@ -13,9 +13,9 @@
 function calculateBMI({weight, height}){
     ...
 }
-console.log(calculateBMI({weight: 75, height: 173}))
-console.log(calculateBMI({weight: 40, height: 178}))
-console.log(calculateBMI({weight: 120, height: 158}))
+console.log(calculateBMI(75, 173))
+console.log(calculateBMI(40, 178))
+console.log(calculateBMI(120, 158))
 ```
 
 ### 2. Cтворити функцію, яка обчислюватиме потрібну кількість калорій на день, для тих, хто хоче набрати або скинути вагу.
