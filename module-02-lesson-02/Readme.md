@@ -118,12 +118,11 @@ const per_page = 4;
 const page = 3;
 `Очікуваний резульат`: [9, 10]
 ```js
-const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const per_page = 2;
-const page = 1;
-
+function createGroups(data, per_page, page){}
 
 // Виклич функції для перевірки працездатності твоєї реалізації.
-console.log(createGroups(data, per_page, page));
+console.log(createGroups([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 2, 1));
+console.log(createGroups([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 6, 2));
+console.log(createGroups([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 4, 3));
 ```
 
