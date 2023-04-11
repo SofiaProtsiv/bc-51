@@ -67,9 +67,9 @@ shallow1.social.instagram = "wesbos.dev";
 // console.log(person, shallow1)
 
 // 🚀 3 ways how to make a DEEP COPY of an object with all levels of nesting
-const deep1 = JSON.parse(JSON.stringify(wes));
-const deep2 = structuredClone(wes);
-const deep3 = _.cloneDeep(obj); // https://www.geeksforgeeks.org/lodash-_-clonedeep-method/
+const deep1 = JSON.parse(JSON.stringify(person));
+const deep2 = structuredClone(person);
+const deep3 = _.cloneDeep(person); // https://www.geeksforgeeks.org/lodash-_-clonedeep-method/
 
 deep1.social.twitter = "@wesbos";
 // console.log(person, deep1)
@@ -78,11 +78,11 @@ deep1.social.twitter = "@wesbos";
 ### 2. Практика базових дій над об'єктом
 
 - Створи 2 окремі змінні `firstName` і `lastName` і задопомогою `promt` попроси користувача ввести дані.
-- Зміни значення властивості `firstName` на якесь інше
 - Створи об'єкт `user` і занеси в нього дані які ти отримав у користувача, після цієї дії в об'єкті user має бути 2 властивості.
+- Зміни значення властивості `firstName` на якесь інше
 - Виедети значення властивості `lastName` у консоль 2 способами.
-- Створи змінну `const login = test@gmail.com`
-- Створи змінну `const password = test123`
+- Створи змінну `const login = "test@gmail.com"`
+- Створи змінну `const password = "test123"`
 - Створи властивість `auth`, її значенням має бути об'єкт з 2 властивостями `login` i `password`. Скоритайся короткими властивостями
 - Виедети значення властивості `auth` у консоль.
 - Створи у об'єкті `user` 2 методи:
