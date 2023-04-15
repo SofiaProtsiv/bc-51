@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion</title>
+  </head>
+  <style>
+    .accordion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      list-style: none;
+      padding: 15px;
+    }
+    .accordion-list-item {
+      position: relative;
+      transition: all 500ms linear;
+    }
+    .accordion {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      transition: 0.4s;
+    }
+    .active,
+    .accordion:hover {
+      background-color: #ccc;
+    }
+    .panel {
+      background-color: white;
+      display: none;
+      padding: 20px;
+      overflow: hidden;
+    }
+    .panel.active {
+      display: block;
+    }
+  </style>
+  <body>
+    <ul class="accordion-list list js-accordion-list">
+      <li class="accordion-list-item">
+        <button class="accordion js-accordion-btn">Item 1</button>
+        <div class="panel js-panel">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+            labore deleniti ullam esse consequatur voluptatem veritatis,
+            mollitia voluptas voluptatibus quia eveniet veniam, eaque corrupti
+            id iste! Consequuntur temporibus doloribus assumenda!
+          </p>
+        </div>
+      </li>
+      <li class="accordion-list-item">
+        <button class="accordion js-accordion-btn">Item 2</button>
+        <div class="panel js-panel">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+            labore deleniti ullam esse consequatur voluptatem veritatis,
+            mollitia voluptas voluptatibus quia eveniet veniam, eaque corrupti
+            id iste! Consequuntur temporibus doloribus assumenda!
+          </p>
+        </div>
+      </li>
+      <li class="accordion-list-item">
+        <button class="accordion js-accordion-btn">Item 3</button>
+        <div class="panel js-panel">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore,
+            labore deleniti ullam esse consequatur voluptatem veritatis,
+            mollitia voluptas voluptatibus quia eveniet veniam, eaque corrupti
+            id iste! Consequuntur temporibus doloribus assumenda!
+          </p>
+        </div>
+      </li>
+    </ul>
+  </body>
+</html>

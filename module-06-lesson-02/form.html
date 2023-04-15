@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <style>
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+    }
+    .contact-form-input {
+      height: 40px;
+      border: 1px solid #cccccc;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    .contact-form-btn {
+      align-self: center;
+      margin-top: 20px;
+      padding: 10px 26px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <form class="contact-form js-contact-form">
+      <input
+        name="username"
+        type="text"
+        class="contact-form-input js-username-input"
+        data-length="8"
+        required
+        placeholder="Your name"
+      />
+      <label class="js-policy-label">
+        <input
+          type="checkbox"
+          name="accept"
+          value="true"
+          class="contact-form-checkbox js-policy-checkbox"
+        />
+        Я <span class="js-username-output"></span> погоджуюсь із політикою
+        конфіденційності
+      </label>
+      <button type="submit" class="contact-form-btn js-contact-form-submit">
+        Відправити
+      </button>
+    </form>
+  </body>
+</html>
