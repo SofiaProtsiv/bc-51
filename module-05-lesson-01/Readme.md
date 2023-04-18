@@ -1,6 +1,6 @@
 # Модуль 5. Заняття 9. Контекст виклику функції та this
 
-### 1. Розстав відсутні this в методах об'єкта account.
+## 1. Розстав відсутні this в методах об'єкта account.
 ```js
 const account = {
   owner: 'Mango',
@@ -29,7 +29,7 @@ console.log(account.balance); // 19000
 console.table(account.showOrders()); // ['order-1', 'order-2', 'order-3', 'order-4']
 ```
 
-### 2. Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
+## 2. Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
 
 ```js
 const inventory = {
@@ -64,7 +64,7 @@ invokeInventoryAction('Gas mask', inventory.remove);
 console.log(inventory.items); // ['Knife', 'Medkit']
 ```
 
-### 3. Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
+## 3. Виправ помилки, які будуть в консолі, щоб скрипт запрацював.
 ```js
 const car = {
   registrationNumber: 'GA12345',
@@ -79,7 +79,7 @@ const displayDetails = ownerName =>{
 
 displayDetails('Sofia');
 ```
-### 4. Що виведеться в консоль?
+## 4. Що виведеться в консоль?
 ```js
 const directRoute = function (to = 'Chop') {
   console.log(`${this.from} => ${to}`);
@@ -112,7 +112,7 @@ const anotherDirectRoute = train1.directRoute;
 console.log(anotherDirectRoute());
 ```
 
-5. Корзина товарів
+## 5. Корзина товарів
 
 - getItems() - отримати корзину товарів, усі товари
 - add(product) - додати у корзину об'єкт продукта
@@ -172,7 +172,7 @@ console.table(cart.getItems());
 console.log('Total: ', cart.countTotalPrice());
 ```
 
-### 6. Напиши скрипт управління особистим кабінетом інтернет банку. Є об'єкт `account` в якому необхідно реалізувати методи для роботи з балансом та історією транзакцій.
+## 6. Напиши скрипт управління особистим кабінетом інтернет банку. Є об'єкт `account` в якому необхідно реалізувати методи для роботи з балансом та історією транзакцій.
 ```js
 /*
  * Типів транзакцій всього два.
