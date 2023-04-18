@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Piano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #e3f2fd;
+    }
+    .wrapper {
+      padding: 35px 40px;
+      border-radius: 20px;
+      background: #141414;
+    }
+    .piano-keys {
+      display: flex;
+      list-style: none;
+      margin-top: 40px;
+    }
+    .piano-keys .key {
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      text-transform: uppercase;
+    }
+    .piano-keys .black {
+      z-index: 2;
+      width: 44px;
+      height: 140px;
+      margin: 0 -22px 0 -22px;
+      border-radius: 0 0 5px 5px;
+      background: linear-gradient(#333, #000);
+    }
+    .piano-keys .black.active {
+      box-shadow: inset -5px -10px 10px rgba(255, 255, 255, 0.1);
+      background: linear-gradient(to bottom, #000, #434343);
+    }
+    .piano-keys .white {
+      height: 230px;
+      width: 70px;
+      border-radius: 8px;
+      border: 1px solid #000;
+      background: linear-gradient(#fff 96%, #eee 4%);
+    }
+    .piano-keys .white.active {
+      box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    }
+    .piano-keys .key span {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      color: #a2a2a2;
+      font-size: 1.13rem;
+      text-align: center;
+    }
+    .piano-keys .black span {
+      bottom: 13px;
+      color: #888888;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <ul class="piano-keys">
+        <li class="key white" data-key="a"><span>a</span></li>
+        <li class="key black" data-key="w"><span>w</span></li>
+        <li class="key white" data-key="s"><span>s</span></li>
+        <li class="key black" data-key="e"><span>e</span></li>
+        <li class="key white" data-key="d"><span>d</span></li>
+        <li class="key white" data-key="f"><span>f</span></li>
+        <li class="key black" data-key="t"><span>t</span></li>
+        <li class="key white" data-key="g"><span>g</span></li>
+        <li class="key black" data-key="y"><span>y</span></li>
+        <li class="key white" data-key="h"><span>h</span></li>
+        <li class="key black" data-key="u"><span>u</span></li>
+        <li class="key white" data-key="j"><span>j</span></li>
+        <li class="key white" data-key="k"><span>k</span></li>
+        <li class="key black" data-key="o"><span>o</span></li>
+        <li class="key white" data-key="l"><span>l</span></li>
+        <li class="key black" data-key="p"><span>p</span></li>
+        <li class="key white" data-key=";"><span>;</span></li>
+      </ul>
+    </div>
+
+    <script>
+      const pianoKeys = document.querySelectorAll(".piano-keys .key");
+
+      let allKeys = [];
+      let audio = new Audio();
+
+      pianoKeys.forEach((key) => {
+        allKeys.push(key.dataset.key);
+        key.addEventListener("click", () => playTune(key.dataset.key));
+      });
+
+      function playTune(key) {
+        console.log(key)
+        audio.src = `./tunes/${key}.wav`;
+
+        const clickedKey = document.querySelector(`[data-key="${key}"]`);
+        clickedKey.classList.add("active");
+
+        audio.play();
+        audio.currentTime = 0;
+
+        setTimeout(() => {
+          clickedKey.classList.remove("active");
+        }, 150);
+      }
+
+      function pressedKey(e) {
+        console.log(e);
+        if (allKeys.includes(e.key)) {
+          playTune(e.key);
+        }
+      }
+
+      document.addEventListener("keydown", pressedKey);
+    </script>
+  </body>
+</html>

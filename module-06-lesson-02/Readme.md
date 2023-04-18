@@ -37,7 +37,6 @@ formUserNameRef.addEventListener("blur", () => {});
 <p>Shift Key: <span id="shiftKey"></span></p>
 <p>Ctrl Key: <span id="ctrlKey"></span></p>
 <p>Alt Key: <span id="altKey"></span></p>
-<p>Meta Key: <span id="metaKey"></span></p>
 <p>Caps Lock: <span id="capsLock"></span></p>
 ```
 
@@ -48,7 +47,6 @@ const keyName = document.getElementById("keyName"); // показує клаві
 const shiftKey = document.getElementById("shiftKey"); // якщо shiftKey було нажато показує 'Pressed' інакше 'Not Pressed'
 const ctrlKey = document.getElementById("ctrlKey"); // якщо ctrlKey було нажато показує 'Pressed' інакше 'Not Pressed'
 const altKey = document.getElementById("altKey"); // якщо altKey було нажато показує 'Pressed' інакше 'Not Pressed'
-const metaKey = document.getElementById("metaKey"); // якщо metaKey було нажато показує 'Pressed' інакше 'Not Pressed'
 const capsLock = document.getElementById("capsLock"); // якщо capsLock увімкнено показує 'On' інакше 'Off'
 
 // Функція для оновлення значень на сторінці
@@ -98,4 +96,23 @@ const translations = [
 ];
 
 function getTranslation(word) {}
+```
+
+## 5. Створи калькулятор використовуючи шаблон html з файлу [calculator.html](./calculator.html). У кожної кнопки є атрибути `data-type` i `data-value`. Повішай на кожну кнопку з колекції `buttons` обробник подій відповідно до її типу `data-type`. Вибористовуй `switch` оператор для додання відповідної функції, яка повинна виконуватися при кліку. Для спрощення задачі, цей калькулятор зможе обчислювати вираз лише з 2 чисел.
+
+- appendCharacter() - до значення з інпута додає нові значення, формує вираз, результат якого будемо обчислювати далі, конкатенує значення між собою (`data-type = number` і `data-type = operator`)
+- clearDisplay() - очищує значення інпута (`data-type = clear`)
+- deleteCharacter() - видаляє один символ з кінця (`data-type = delete`)
+- calculate() - рахує та відображає результат у інспуті (`data-type = equal`)
+
+```js
+const display = document.querySelector("#display");
+const buttons = document.querySelectorAll(".btn");
+
+// Add click event listener to each button
+
+function appendCharacter(character) {}
+function clearDisplay() {}
+function deleteCharacter() {}
+function calculate() {}
 ```

@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+  </head>
+  <style>
+    body {
+      background: #fff;
+      color: #333;
+      font-family: Lato, sans-serif;
+    }
+    .container {
+      display: block;
+      width: 400px;
+      margin: 100px auto 0;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li * {
+      float: left;
+    }
+    li,
+    h3 {
+      clear: both;
+      list-style: none;
+    }
+    input,
+    button {
+      outline: none;
+    }
+    button {
+      background: none;
+      border: 0px;
+      color: #888;
+      font-size: 15px;
+      width: 60px;
+      margin: 10px 0 0;
+      font-family: Lato, sans-serif;
+      cursor: pointer;
+    }
+    button:hover {
+      color: #333;
+    }
+    
+    /* Heading */
+    h3,
+    label[for='taskInput'] {
+      color: #333;
+      font-weight: 700;
+      font-size: 15px;
+      border-bottom: 2px solid #333;
+      padding: 30px 0 10px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    input[type='text'] {
+      margin: 0;
+      font-size: 18px;
+      line-height: 18px;
+      height: 18px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      border-radius: 6px;
+      font-family: Lato, sans-serif;
+      color: #888;
+    }
+    input[type='text']:focus {
+      color: #333;
+    }
+
+    /* New Task */
+    label[for='taskInput'] {
+      display: block;
+      margin: 0 0 20px;
+    }
+    input#taskInput {
+      float: left;
+      width: 318px;
+    }
+    p > button:hover {
+      color: #0fc57c;
+    }
+
+    /* Task list */
+    li {
+      overflow: hidden;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+    }
+    li > input[type='checkbox'] {
+      margin: 0 10px;
+      position: relative;
+      top: 15px;
+    }
+    li > label {
+      font-size: 18px;
+      line-height: 40px;
+      width: 237px;
+      padding: 0 0 0 11px;
+    }
+    li > input[type='text'] {
+      width: 226px;
+    }
+    li > .delete:hover {
+      color: #cf2323;
+    }
+
+    /* Completed */
+    input[type='checkbox']:checked + label{
+      text-decoration: line-through;
+      color: #888;
+    }
+
+    /* Edit Task */
+    ul li input[type='text'] {
+      display: none;
+    }
+
+    ul li.editMode input[type='text'] {
+      display: block;
+    }
+
+    ul li.editMode label {
+      display: none;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <p>
+        <label for="taskInput">Add Item</label>
+        <input id="taskInput" type="text" />
+        <button class="add" id="addButton">Add</button>
+      </p>
+      <h3>Todos</h3>
+      <ul id="taskList">
+        <li>
+          <input type="checkbox" />
+          <label>Do homework</label>
+          <input type="text" />
+          <button class="edit">Edit</button>
+          <button class="delete">Delete</button>
+        </li>
+        <li>
+          <input type="checkbox" />
+          <label>Go Shopping</label>
+          <input type="text" value="Go Shopping" />
+          <button class="edit">Edit</button>
+          <button class="delete">Delete</button>
+        </li>
+      </ul>
+  </body>
+</html>
