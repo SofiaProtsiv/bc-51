@@ -4,143 +4,167 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
+      integrity="sha512-wpPYUAdjBVSE4KJnH1VR1HeZfpl1ub8YT/NKx4PuQ5NmX2tKuGu6U/JRp5y+Y8XG2tV+wKQpNHVUX03MfMFn9Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
+  .backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 500ms linear, visibility 500ms linear;
+}
 
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
+.backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
-    button {
-      background-color: #04aa6d;
-      color: white;
-      padding: 14px 20px;
-      margin: 8px 0;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-    }
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 96vw;
+  max-width: 450px;
+  height: 100vh;
+  max-height: 610px;
+  overflow-y: scroll;
+  padding: 40px;
+  background-color: #ffffff;
+}
 
-    button:hover {
-      opacity: 0.8;
-    }
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
 
-    .cancelbtn {
-      width: auto;
-      padding: 10px 18px;
-      background-color: #f44336;
-    }
+@media screen and (min-width: 1200px) {
+  .modal {
+    max-width: 528px;
+    max-height: 580px;
+  }
+}
 
-    .imgcontainer {
-      text-align: center;
-      margin: 24px 0 12px 0;
-      position: relative;
-    }
+.btn {
+  margin: 20px;
+  width: 130px;
+  height: 40px;
+  color: #000;
+  border-radius: 5px;
+  padding: 15px 30px;
+  font-weight: 500;
+  font-family: 'Lato', sans-serif;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  outline: none;
+  background-color: #f0ecfc;
+  background-image: linear-gradient(315deg, #f6f6b7 0%, #d9ff42 74%);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn:before,
+.btn:after {
+  position: absolute;
+  content: '';
+  right: 0;
+  bottom: 0;
+  background: #d9ff42;
+  /*box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);*/
+  transition: all 0.3s ease;
+}
+.btn:before {
+  height: 0%;
+  width: 2px;
+}
+.btn:after {
+  width: 0%;
+  height: 2px;
+}
+.btn:hover:before {
+  height: 100%;
+}
+.btn:hover:after {
+  width: 100%;
+}
+.btn:hover {
+  background: transparent;
+}
+.btn span:hover {
+  color: black;
+}
+.btn span:before,
+.btn span:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 0;
+  background: #d9ff42;
+  /*box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);*/
+  transition: all 0.3s ease;
+}
+.btn span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn span:after {
+  height: 2px;
+  width: 0%;
+}
+.btn span:hover:before {
+  height: 100%;
+}
+.btn span:hover:after {
+  width: 100%;
+}
+</style>
 
-    img.avatar {
-      width: 40%;
-      border-radius: 50%;
-    }
-
-    .container {
-      padding: 16px;
-    }
-
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-      padding-top: 60px;
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-      border: 1px solid #888;
-      width: 80%; /* Could be more or less, depending on screen size */
-    }
-
-    .close {
-      position: absolute;
-      right: 25px;
-      top: 0;
-      color: #000;
-      font-size: 35px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: red;
-      cursor: pointer;
-    }
-  </style>
   <body>
-    <h2>Modal Login Form</h2>
-    <button id="login_btn" style="width: auto">Login</button>
-
-    <div id="modal" class="modal">
-      <form
-        class="modal-content animate"
-        action="/action_page.php"
-        method="post"
-      >
-        <div class="imgcontainer">
-          <span id="closeModal_btn" class="close" title="Close Modal"
-            >&times;</span
-          >
-          <img
-            src="https://www-w3schools-com.translate.goog/howto/img_avatar2.png"
-            alt="Avatar"
-            class="avatar"
-          />
-        </div>
-
-        <div class="container">
-          <label for="name"><b>Username</b></label>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            name="name"
-            required
-          />
-
-          <label for="password"><b>Password</b></label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="password"
-            required
-          />
-
-          <button type="submit">Login</button>
-          <label>
-            <input type="checkbox" value="false" name="remember" />
-            Remember me
-          </label>
-        </div>
-
-        <div class="container" style="background-color: #f1f1f1">
-          <button type="button" class="cancelbtn" id="cancle_btn">
-            Cancel
-          </button>
-        </div>
-      </form>
+    <button class="js-modal-open btn"><span>Open modal</span></button>
+    <div class="backdrop js-backdrop">
+      <div class="modal">
+        <button type="button" class="close-btn js-modal-close">X</button>
+      </div>
     </div>
   </body>
 </html>

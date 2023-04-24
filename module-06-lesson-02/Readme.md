@@ -64,20 +64,20 @@ function updateValues(event) {}
 - Якщо користувач натиснув ESC також закривай модалку
 
 ```js
-// refs
-const modal = document.getElementById("modal");
-const form = document.querySelector("form");
-const login_btn = document.querySelector("#login_btn");
-const cancle_btn = document.querySelector("#cancle_btn");
-const closeModal_btn = document.querySelector("#closeModal_btn");
+const backdropRef = document.querySelector(".js-backdrop");
+const openBtnRef = document.querySelector(".js-modal-open");
+const closeBtnRef = document.querySelector(".js-modal-close");
 
-// function which you should add to event listener as callback
-function handleFormOpen() {}
-function handleFormClose() {}
-function handleFormSubmit() {}
+const handleOpenClick = () => {};
+
+const handleClose = () => {};
+
+const onEscPress = () => {};
+
+const handleCloseBackdrop = () => {};
 ```
 
-## 4. Розроби функціонал для вивчення нових англійський слів. У тебе є масив об'єктів `translations`, де кожен об'єкт це слово (оригінал та переклад). `При наведенні` на картку зі словом, користувач повинен побачити переклад слова. Для цього використовуй функцію `getTranslation(word)`, яка прийматиме оригінал слова, яке потрібно перевести, функція повинна повертати переклад даного слова. При наведенні `додавай` на елемент з класом `word` ще один клас `active`, інакше `видаляй` цей клас. 
+## 4. Розроби функціонал для вивчення нових англійський слів. У тебе є масив об'єктів `translations`, де кожен об'єкт це слово (оригінал та переклад). `При наведенні` на картку зі словом, користувач повинен побачити переклад слова. Для цього використовуй функцію `getTranslation(word)`, яка прийматиме оригінал слова, яке потрібно перевести, функція повинна повертати переклад даного слова. При наведенні `додавай` на елемент з класом `word` ще один клас `active`, інакше `видаляй` цей клас.
 
 ### Викоритовуй шаблон html з файлу [english.html](./english.html). Наповни список `list` елементами, словами, які є в масиві `translations`.
 
