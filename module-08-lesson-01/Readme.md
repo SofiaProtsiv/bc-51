@@ -1,0 +1,37 @@
+# Модуль 8. Заняття 15. Parcel. Webpack
+
+- Термінал
+  - [Шпаргалка 1] (https://tproger.ru/translations/bash-cheatsheet/)
+  - [Шпаргалка 2](https://habr.com/ua/company/ruvds/blog/445270/)
+  - Відкрити термінал
+    - `control + ~`
+    - `view > teminal`
+    - через палітру `command+shift+p`
+  - Основні корисні команди
+    - Шлях (pwd)
+    - Ліст (ls)
+    - Навігація (cd)
+    - Очищення `clear` або `control + l`
+    - Створення файлів (touch)
+    - Створення папок (mkdir)
+    - Перейменування/переміщення (mv)
+    - Видалення (rm)
+- Node.js та npm
+  - встановлення
+  - ініціалізація та package.json
+  - [npmjs.com](https://www.npmjs.com/)
+  - робота з пакетами
+    - Встановлення
+    - Видалення
+  - CommonJS модулі
+  - npm-скрипти
+    - pre та post
+- Транспіляція коду
+  - [Babel](https://babeljs.io/)
+  - CLI та npm-скрипти
+  - Пресети
+  - [Browserslist](https://github.com/browserslist/browserslist)
+- [Складальник Parcel](https://parceljs.org/)
+- [ECMAScript модулі](https://exploringjs.com/es6/ch_modules.html)
+  - Дефолтний (default) експорт та імпорт
+  - Іменований (named) експорт та імпорт

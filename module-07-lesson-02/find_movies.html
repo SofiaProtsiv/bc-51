@@ -53,24 +53,32 @@
         margin-top: 100px;
         margin-bottom: 20px;
       }
-      .country-list {
+      .movies-list {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         width: 350px;
         margin: 0 auto;
       }
-      .countryName {
+      .previewCard{
+        display: flex;
+        gap: 20px;
+      }
+      .posterURL{
+        width: 200px;
+        height: 300px;
+      }
+      .movieName {
         font-size: 40px;
         font-weight: 700;
       }
-      .countryCapital {
+      .movieGenre {
         font-size: 22px;
       }
-      .countryPopulation {
+      .movieRationg {
         font-size: 22px;
       }
-      .countryArea {
+      .movieDescription {
         font-size: 22px;
       }
       .output-error {
@@ -83,12 +91,12 @@
   </head>
 
   <body>
-    <h1 class="title">Search of the country</h1>
+    <h1 class="title">Search of the movie</h1>
 
     <input type="text" id="search-box" />
     <p class="output-error"></p>
 
-    <ul class="country-list"></ul>
+    <ul class="movies-list"></ul>
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   </body>

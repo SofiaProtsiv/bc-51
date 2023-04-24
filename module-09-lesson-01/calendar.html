@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Calendar</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .calendar-container {
+      background-color: white;
+      width: 300px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+
+    .month-name {
+      margin: 0;
+      background-color: orangered;
+      color: white;
+      padding: 10px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .day-name {
+      font-size: 20px;
+      color: darkgray;
+    }
+
+    .day-number {
+      font-size: 80px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .year {
+      margin: 20px 0;
+      font-size: 20px;
+      color: darkgray;
+      font-weight: 500;
+    }
+  </style>
+  <body>
+    <div class="calendar-container">
+      <p class="month-name" id="month-name">April</p>
+      <p class="day-name" id="day-name">Friday</p>
+      <p class="day-number" id="day-number">20</p>
+      <p class="year" id="year">2023</p>
+    </div>
+    <script></script>
+  </body>
+</html>
