@@ -34,17 +34,44 @@ function setThemeOnLoad() {
 }
 ```
 
-## 3.  Authorization
+## 3. TodoList
 
-- Download this folder with starter files
-  [authorization](./authorization/src.zip)
+- Викоритовуй шаблон списку завдань з файлу [todoList.html](./todolist.html) для створення функціоналу для списку завдань. 
+- Використовуй поширення подій а також local storage, щоб при оновленні твої завдання залишалися на сторінці. Для цього використовуй допоміжну функцію setTasksOnLoad, яка буде отримувати далі з LS і додаватиме їх в html
+- При виклику функції addTask зберігай завдання local storage і додавай його у розмітку
+- При deleteTask знаходь завдання по тексту, та видаляй його і з local storage і з розмітки.
 
-Завдання полягає у сторенні імітації реєстрації та входу користувача в особистий
-кабінет. Використовуй локалальне сховище щоб зберігати "реєстраційні дані".
-Зроби перевірку чи користувач уже був зареєстрований, якщо ж не був то створи
-йому акаунт.
+```js
+const form = document.querySelector("form");
+const input = document.querySelector("#input");
+const ul = document.querySelector("#list");
 
-Додатково можна попрактикуватися і використати такі бібліотекия:
+// Function to create new task element, return LI element
+const createNewTaskElement = (value) => {
+  const todoMarkup = `
+        <li>
+          <input disabled value="${value}"/>
+          <div>
+            <button data-action="delete">Delete</button>
+          </div>
+        </li>
+        `;
 
-- [Notifli](https://github.com/notiflix/Notiflix#readme)
-- [Joi](https://joi.dev/api/?v=17.7.0)
+  return todoMarkup;
+};
+
+// Function to handle submit action, call addTask inside
+function handleSubmit() {}
+
+// Function to add a task to the list (use createNewTaskElement) and add to LS
+function addTask() {}
+
+// Function to delete a task from the list and delete from LS
+function deleteTask() {}
+
+// Function to get tasks from LS and set them into ul
+function setTasksOnLoad() {}
+
+form.addEventListener("submit", handleSubmit)
+ul.addEventListener("click", deleteTask);
+```

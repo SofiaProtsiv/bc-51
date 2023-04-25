@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    HTML CSS BabelResult Skip Results Iframe EDIT ON body {
+      margin: 8px;
+      font-family: sans-serif;
+    }
+
+    .output {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+      gap: 4px;
+    }
+
+    .color-palette .item {
+      padding: 0;
+      margin: 0;
+      border: none;
+      border-radius: 4px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: transform 250ms ease-in-out;
+    }
+
+    .color-palette .item:hover {
+      transform: scale(1.1);
+    }
+  </style>
+  <body>
+    <div class="color-palette"></div>
+  </body>
+</html>

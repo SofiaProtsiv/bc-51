@@ -1,6 +1,17 @@
 # Модуль 7. Заняття 14. Debounce and Trottle
 
-## 1. Find country
+## 1. Створи функцію changeBackgroundColor, яка змінює колір фону body на випадковий кожні 250 мілісекунд. Додай прослуховувач події scroll до вікна браузера, який викликає функцію debouncedBackgroundColor. Коли користувач прокручує сторінку, колір фону body буде змінюватись з затримкою в 250 мілісекунд.
+
+- Використовуй html з файлу [scroll.html](./scroll.html).
+```js
+const container = document.querySelector('.container');
+
+const changeBackgroundColor = () => {
+  const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+}
+```
+
+## 2. Find movies
 
 - Використовуй html з файлу [find_cmovies.html](./find_movies.html).
 - Використовуй масив фільмів з файлу [movies.js](./movies.js)
@@ -22,7 +33,7 @@
 <li>
     <div class="previewCard">
         <img src="posterURL" alt="Harry Potter">
-        <p class="movieName">Ukraine 🇺🇦</p>
+        <p class="movieName">Harry Potter</p>
     </div>
     <p class="movieGenre"><b>Genre: </b>comedy</p>
     <p class="movieRationg"><b>Rate: </b>8.5</p>

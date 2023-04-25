@@ -57,12 +57,11 @@ function updateValues(event) {}
 
 ### Викоритовуй шаблон модального вікна з файлу [modal.html](./modal.html).
 
-- По кліку на `login_btn` відкрий модальне вікно змінивши стиль модалки з `display: "none"` на `display: "block" `
-- Отримай дані з форми по події `submit`, виводь дані у консоль і закривай модалку попередньо очистивши форму від введених даних.
-- При кліку на хрестик чи по кнопці cancel закривай модалку змінивши стиль з `display: "block"` на `display: "none" `
+- По кліку на `openBtnRef` відкрий модальне вікно додавши клас на `backdropRef``is-open`
+- При кліку на хрестик чи по кнопці cancel закривай модалку видаливши клас на `backdropRef``is-open`
 - Якщо користувач натиснув не на модалку, а на задній фон, також закривай модалку
 - Якщо користувач натиснув ESC також закривай модалку
-
+- Попрацюй з `removeEventListener()`
 ```js
 const backdropRef = document.querySelector(".js-backdrop");
 const openBtnRef = document.querySelector(".js-modal-open");
