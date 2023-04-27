@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>List</title>
+  </head>
+  <style>
+    body {
+      margin: 10px auto;
+      width: 470px;
+    }
+    h3 {
+      margin: 0;
+      padding-bottom: 0.3em;
+      padding-right: 20px;
+      font-size: 1.1em;
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .item {
+      margin: 0;
+      padding: 0 0 0.5em;
+      background: #e6ff83;
+      padding: 10px 20px 10px;
+      border-top: solid 2px #d1ff1b;
+      position: relative;
+    }
+    .remove-button {
+      position: absolute;
+      font-size: 110%;
+      top: 0;
+      color: rgb(0, 0, 0);
+      right: 10px;
+      display: block;
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <ul class="list">
+      <li class="item">
+        <h3>Horse</h3>
+        <p>
+          The horse is one of two extant subspecies of Equus ferus. It is an
+          odd-toed ungulate mammal belonging to the taxonomic family Equidae.
+          The horse has evolved over the past 45 to 55 million years from a
+          small multi-toed creature, Eohippus, into the large, single-toed
+          animal of today.
+        </p>
+        <button class="remove-button">[x]</button>
+      </li>
+      <li class="item">
+        <h3>Donkey</h3>
+        <p>
+          The donkey or ass (Equus africanus asinus) is a domesticated member of
+          the horse family, Equidae. The wild ancestor of the donkey is the
+          African wild ass, E. africanus. The donkey has been used as a working
+          animal for at least 5000 years.
+        </p>
+        <button class="remove-button">[x]</button>
+      </li>
+      <li class="item">
+        <h3>Cat</h3>
+        <p>
+          The domestic cat (Latin: Felis catus) is a small, typically furry,
+          carnivorous mammal. They are often called house cats when kept as
+          indoor pets or simply cats when there is no need to distinguish them
+          from other felids and felines. Cats are often valued by humans for
+          companionship and for their ability to hunt vermin.
+        </p>
+        <button class="remove-button">[x]</button>
+      </li>
+      <li class="item">
+        <h3>Dog</h3>
+        <p>
+          The dog is a pet animal. A dog has sharp teeth so that it can eat
+          flesh very easily, it has four legs, two ears, two eyes, a tail, a
+          mouth, and a nose. It is a very clever animal and is very useful in
+          catching thieves. It runs very fast, barks loudly and attacks the
+          strangers.
+        </p>
+        <button class="remove-button">[x]</button>
+      </li>
+    </ul>
+  </body>
+</html>

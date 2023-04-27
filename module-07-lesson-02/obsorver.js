@@ -22,13 +22,20 @@ let callback = (entries, observer) => {
   });
 };
 
-// Спостерігач
-let observer = new IntersectionObserver(callback, options);
+// Спостерігач 1.
+let observer = new IntersectionObserver(callback);
 
 // Далі знаходимо цільовий елемент, за яким спостерігатиме спостерігач:
-let target = document.querySelector('.list-item');
+// Variant 1
+// let target = document.querySelector('.list-item');
+// observer.observe(target);
+
+// Variant 2
+let images = document.querySelectorAll('img');
+images.forEach(img => observer.observe(img))
+
 // Вішаємо спостерігача на той цільовий елемент який знайшли раніше
-observer.observe(target);
+
 
 
 // DOCS: https://developer.mozilla.org/ru/docs/Web/API/Intersection_Observer_API

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Pagination</title>
+
+    <style>
+      body {
+        background-color: #fff;
+        color: #333;
+        font: 1.2em / 1.5 Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding: 0;
+        margin: 0;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        border-top: 1px solid #eee;
+        margin-top: 1em;
+        padding-top: 0.5em;
+        list-style: none;
+      }
+
+      .pagination__item {
+        display: block;
+        margin: 0 .25rem;
+        padding: 0.5em 1em;
+        border: 1px solid #999;
+        border-radius: 0.5em;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .pagination__item.active {
+        background-color: #bfff48;
+        color: #000000;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <ul class="pagination">
+      <li data-type="prev" class="pagination__item">&laquo;</li>
+      <li data-type="page" data-page="1" class="pagination__item active">1</li>
+      <li data-type="page" data-page="2" class="pagination__item">2</li>
+      <li data-type="page" data-page="3" class="pagination__item">3</li>
+      <li data-type="page" data-page="4" class="pagination__item">4</li>
+      <li data-type="page" data-page="5" class="pagination__item">5</li>
+      <li data-type="next" class="pagination__item">&raquo;</li>
+    </ul>
+
+  </body>
+</html>
