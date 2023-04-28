@@ -29,7 +29,7 @@ const pizzas = [
     types: ["thin"],
     sizes: [26, 40],
     price: 29.5,
-    category: 3,
+    category: "Grill",
     rating: 4,
   },
   {
