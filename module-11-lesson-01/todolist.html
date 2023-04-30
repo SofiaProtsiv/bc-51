@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f2f2f2;
+      font-family: sans-serif;
+    }
+
+    .container {
+      margin: 20px auto;
+      width: 500px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-bottom: 2px solid #ddd;
+      font-size: 18px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      margin-left: 5px;
+      background-color: #008cba;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #006d9e;
+    }
+
+    ul {
+      margin-top: 20px;
+      list-style-type: none;
+    }
+
+    li {
+      padding: 10px;
+      background-color: #f2f2f2;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+    }
+    li div {
+      display: flex;
+      gap: 8px;
+    }
+    li input {
+      width: 70%;
+      border: none;
+      background-color: #f2f2f2;
+    }
+    li input.active {
+      width: 70%;
+      background-color: #ffffff;
+    }
+    li button[data-action="edit"] {
+      background-color: #355075;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    li button[data-action="edit"].active {
+      background-color: #2f7600;
+      color: #fff;
+    }
+
+    li button[data-action="delete"] {
+      background-color: #ff4d4d;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    li button:hover {
+      opacity: 0.8;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Todo List</h1>
+      <form>
+        <input type="text" id="input" placeholder="Add New Task" />
+        <button type="submit" id="addBtn">Add</button>
+      </form>
+      <ul id="list"></ul>
+    </div>
+  </body>
+</html>

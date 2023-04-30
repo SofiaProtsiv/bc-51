@@ -1,0 +1,91 @@
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  width: 295px;
+  overflow: hidden;
+  border-radius: 25px;
+  border: 1px solid lightgray;
+  margin: 10px;
+  padding: 30px 20px 10px 20px;
+  box-shadow: 3px 3px 10px 3px rgb(222, 222, 222);
+  list-style: none;
+  cursor: pointer;
+  transition: 230ms ease-in-out;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+.card__image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.card__image > img {
+  max-width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 20px 0;
+}
+.card__info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+.card__info p {
+  margin: 0;
+  margin-top: 10px;
+  font-size: 23px;
+  font-weight: 900;
+}
+.card__info button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  cursor: pointer;
+  color: lightgray;
+  font-weight: 900;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  background-color: white;
+}
+.card__info--button {
+  position: absolute;
+  display: flex;
+  right: 0;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  gap: 8px;
+  color: lightgray;
+}
+.card__info--button.checked {
+  color: orangered;
+  background-color: rgb(255 68 0 / 22%);
+}
+.card__info--button div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  cursor: pointer;
+}
