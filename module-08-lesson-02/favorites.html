@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Favorites</title>
+  </head>
+  <style>
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-left: -30px;
+      margin-top: -30px;
+      margin-bottom: 20px;
+    }
+    .card {
+      flex-basis: calc((100% - 120px) / 4);
+      margin-left: 30px;
+      margin-top: 30px;
+      overflow: hidden;
+      border-radius: 25px;
+      border: 1px solid lavender;
+      box-shadow: 5px 5px 15px 5px rgba(230, 230, 250, 1);
+    }
+
+    .card__image {
+      position: relative;
+      height: 140px;
+    }
+
+    .card__image > img {
+      max-width: 100%;
+      border-bottom-right-radius: 30px;
+      transform: rotate(10deg) translate(-15px, -55px);
+      position: absolute;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .card__info {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0px 30px 20px 30px;
+    }
+    .card__info h3 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .card__info p {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .card__info--button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      border: 1px solid lavender;
+      gap: 8px;
+      color: lavender;
+    }
+    .card__info--button.checked {
+      color: orangered;
+      background-color: rgb(255 68 0 / 22%);
+    }
+    .card__info--button div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <ul></ul>
+  </body>
+</html>

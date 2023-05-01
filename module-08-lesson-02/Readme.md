@@ -34,53 +34,12 @@ function setThemeOnLoad() {
 }
 ```
 
-## 3. TodoList
-
-- Викоритовуй шаблон списку завдань з файлу [todoList.html](./todolist.html) для створення функціоналу для списку завдань.
-- Використовуй поширення подій а також local storage, щоб при оновленні твої завдання залишалися на сторінці. Для цього використовуй допоміжну функцію setTasksOnLoad, яка буде отримувати далі з LS і додаватиме їх в html
-- При виклику функції addTask зберігай завдання local storage і додавай його у розмітку
-- При deleteTask знаходь завдання по тексту, та видаляй його і з local storage і з розмітки.
-
-```js
-const form = document.querySelector("form");
-const input = document.querySelector("#input");
-const ul = document.querySelector("#list");
-
-// Function to create new task element, return LI element
-const createNewTaskElement = (value) => {
-  const todoMarkup = `
-        <li>
-          <input disabled value="${value}"/>
-          <div>
-            <button data-action="delete">Delete</button>
-          </div>
-        </li>
-        `;
-
-  return todoMarkup;
-};
-
-// Function to handle submit action, call addTask inside
-function handleSubmit() {}
-
-// Function to add a task to the list (use createNewTaskElement) and add to LS
-function addTask() {}
-
-// Function to delete a task from the list and delete from LS
-function deleteTask() {}
-
-// Function to get tasks from LS and set them into ul
-function setTasksOnLoad() {}
-
-form.addEventListener("submit", handleSubmit);
-ul.addEventListener("click", deleteTask);
-```
-
-## 4. Favorite food.
-
+## 3. Favorite food.
 Напиши функціонал, який дозволить додавати улюблені страви у local storage і стилізувати кнопку задопомгою класу checked для того щоб при оновленні сторінки користувач кожного разу бачив, які страви були його улюбленими.
 В будь який момент страву можна видалити з улюблених, просто натиснувши на сердечко, ця дія має видалити клас checked з блоку сердечка та видалити страву з local storage
 Функція setFavoritesOnLoad має запускатися при вході на сторінку та додавати клас checked всім тим сердечкам, чиї id були у local storage в улюблених
+
+- Використовуй html з файлу [favorites.html](./favorites.html)
 
 ```js
 const products = [
@@ -142,4 +101,47 @@ function createMarkup(products) {
 }
 
 function setFavoritesOnLoad(){}
+```
+
+
+## 4. TodoList
+
+- Викоритовуй шаблон списку завдань з файлу [todoList.html](./todolist.html) для створення функціоналу для списку завдань.
+- Використовуй поширення подій а також local storage, щоб при оновленні твої завдання залишалися на сторінці. Для цього використовуй допоміжну функцію setTasksOnLoad, яка буде отримувати далі з LS і додаватиме їх в html
+- При виклику функції addTask зберігай завдання local storage і додавай його у розмітку
+- При deleteTask знаходь завдання по тексту, та видаляй його і з local storage і з розмітки.
+
+```js
+const form = document.querySelector("form");
+const input = document.querySelector("#input");
+const ul = document.querySelector("#list");
+
+// Function to create new task element, return LI element
+const createNewTaskElement = (value) => {
+  const todoMarkup = `
+        <li>
+          <input disabled value="${value}"/>
+          <div>
+            <button data-action="delete">Delete</button>
+          </div>
+        </li>
+        `;
+
+  return todoMarkup;
+};
+
+// Function to handle submit action, call addTask inside
+function handleSubmit() {}
+
+// Function to add a task to the list (use createNewTaskElement) and add to LS
+function addTask() {}
+
+// Function to delete a task from the list and delete from LS
+function deleteTask() {}
+
+// Function to get tasks from LS and set them into ul
+function setTasksOnLoad() {}
+
+form.addEventListener("submit", handleSubmit);
+ul.addEventListener("click", deleteTask);
 ```
