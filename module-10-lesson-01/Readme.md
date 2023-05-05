@@ -58,7 +58,39 @@ function getUsers(logins) {}
 getUsers(usersLogins);
 ```
 
-## 3. Weather forecast. Зроби запит данин на отримання прогнозу погоди на поточний день у певному місті. Назву міста потрібно ввести у полі вводу і по цим даним робити запит. Отримайте відповідь в форматі JSON. Розпарсіть JSON із відповіді та відобразіть дані на сторінці у блоці content.
+## 3. Створіть простий пошук новин за ключовим словом та датою на сайті. Користувач може ввести ключове слово в поле пошуку та вибрати дату за допомогою календаря. Він також може вибрати тип сортування результатів. Після пошуку новин повинен бути відображений список знайдених новин за обраним критерієм. Якщо користувач в пошуковому полі нічого не ввів то запит йти не повинен, використай бібліотеку  [Notiflix](https://github.com/notiflix/Notiflix#readme) для повідомлення про необіхдність ввести пошуковий запит.
+
+- Використовуй [NewsAPI](https://newsapi.org/)
+- Використовуй html з файлу [news.html](./news.html).
+
+```js
+const form = document.querySelector('form');
+const newsContainer = document.getElementById('news');
+
+const BASE_URL = 'https://newsapi.org/v2'
+const API_KEY = '94e7350e65ba433baccbec406066c2bd';
+
+function createNewsCardMarkup(newsArray) {
+  const newsCards = newsArray.map(news => {
+    return `
+      <div class="news-card">
+        <div class="news-card-image" style="background-image: url(${news.urlToImage})"></div>
+        <div class="news-card-content">
+          <h2 class="news-card-title">${news.title}</h2>
+          <p class="news-card-description">${news.description}</p>
+        </div>
+      </div>
+    `;
+  });
+  return newsCards.join('');
+}
+
+function fetchNews(event) {}
+
+form.addEventListener('submit', fetchNews);
+```
+
+## 4. Weather forecast. Зроби запит данин на отримання прогнозу погоди на поточний день у певному місті. Назву міста потрібно ввести у полі вводу і по цим даним робити запит. Отримайте відповідь в форматі JSON. Розпарсіть JSON із відповіді та відобразіть дані на сторінці у блоці content.
 
 - Використовуй [OpenWeatherMap API](https://openweathermap.org/)
 - Використовуй html з файлу [weather.html](./weather.html).
