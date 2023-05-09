@@ -1,7 +1,7 @@
 # Модуль 11. Заняття 20. CRUD
 
 ## 1. Практика CRUD операцій
-Спершу встанови JSON Server, потім у корені робочої папки створи файл db.json
+Спершу встанови [JSON Server](https://www.npmjs.com/package/json-server), потім у корені робочої папки створи файл `db.json`
 
 ```js
 {
