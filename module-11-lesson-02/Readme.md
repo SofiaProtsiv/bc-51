@@ -3,6 +3,7 @@
 ## 1. Написати функцію, яка отримує на вхід масив імен користувачів та повертає їхні аватарки з [GitHub API](https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user) використовуючи async/await синтаксис.
 
 - Створити функцію getUserAvatars, яка отримує на вхід масив імен користувачів.
+
 ```js
 const usersLogins = [
   "luxplanjay",
@@ -14,67 +15,69 @@ const usersLogins = [
   "gsmoff",
 ];
 ```
+
 - В тілі функції створити порожній масив userAvatars.
 - Використовуючи цикл for..of, перебрати масив імен користувачів та для кожного імені виконати наступні дії:
-    1. Створити змінну response та присвоїти їй значення отримане з методу fetch, де в якості URL буде вказано https://api.github.com/users/${username}.
-    2. Використовуючи оператор await, дочекатись отримання результату від запиту до API.
-    3. Використовуючи метод json(), отримати дані у форматі JSON та зберегти їх в змінну userData.
-    4. До масиву userAvatars додати значення, яке повертається з виклику методу userData.avatar_url.
+  1. Створити змінну response та присвоїти їй значення отримане з методу fetch, де в якості URL буде вказано https://api.github.com/users/${username}.
+  2. Використовуючи оператор await, дочекатись отримання результату від запиту до API.
+  3. Використовуючи метод json(), отримати дані у форматі JSON та зберегти їх в змінну userData.
+  4. До масиву userAvatars додати значення, яке повертається з виклику методу userData.avatar_url.
 - Повернути масив userAvatars.
-
 
 ## 2. Rewrite function to async await
 
 ```js
-const BASE_URL = 'https://62d459315112e98e484e5213.mockapi.io';
+const BASE_URL = "https://62d459315112e98e484e5213.mockapi.io";
 
 // GET -> /contacts
 const getContacts = () => {
-  return fetch(`${BASE_URL}/contacts`).then(response => response.json());
+  return fetch(`${BASE_URL}/contacts`).then((response) => response.json());
 };
 
 // GET -> /contacts/:id
-const getContactById = id => {
-  return fetch(`${BASE_URL}/contacts/${id}`).then(response => response.json());
-};
-
-// POST -> /contacts
-const createContact = contact => {
-  const options = {
-    method: 'POST',
-    body: JSON.stringify(contact),
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-  };
-
-  return fetch(`${BASE_URL}/contacts`, options).then(response =>
+const getContactById = (id) => {
+  return fetch(`${BASE_URL}/contacts/${id}`).then((response) =>
     response.json()
   );
 };
 
-// PUT -> /contacts/:id
-const updateContact = newContact => {
+// POST -> /contacts
+const createContact = (contact) => {
   const options = {
-    method: 'PUT',
+    method: "POST",
+    body: JSON.stringify(contact),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8",
+    },
+  };
+
+  return fetch(`${BASE_URL}/contacts`, options).then((response) =>
+    response.json()
+  );
+};
+
+// PATCH -> /contacts/:id
+const updateContact = (newContact) => {
+  const options = {
+    method: "PATCH",
     body: JSON.stringify(newContact),
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
+      "Content-Type": "application/json; charset=UTF-8",
     },
   };
 
   return fetch(`${BASE_URL}/contacts/${newContact.id}`, options).then(
-    response => response.json()
+    (response) => response.json()
   );
 };
 
 // DELETE -> /contacts/:id
-const deleteContact = id => {
+const deleteContact = (id) => {
   const options = {
-    method: 'DELETE',
+    method: "DELETE",
   };
 
-  return fetch(`${BASE_URL}/contacts/${id}`, options).then(response =>
+  return fetch(`${BASE_URL}/contacts/${id}`, options).then((response) =>
     response.json()
   );
 };
@@ -82,21 +85,91 @@ const deleteContact = id => {
 
 ## 3. Infinite Scrolling with Intersection Observer API and async/await
 
-- Використовуй html з файлу [infinite_scroll.html](./infinite_scroll.html).
+- Використовуй html з файлу [gallery.html](./gallery.html).
 - Шаблон створення спостерігача [obsorver.js](../module-07-lesson-02/obsorver.js)
 
-Необхідно розробити "безкінечний" скрол для відображення списку дописів. На початку загружається перші 20 дописів, при скролі до кінця списку (коли moreBlock стає видимим), показується наступні 20 дописів, доки не досягнуто кінця всього списку. Інформація про дописи отримується з зовнішнього API, а саме [{JSON} Placeholder API](https://jsonplaceholder.typicode.com/)
+```js
+class UnsplashAPI {
+  #BASE_URL = 'https://api.unsplash.com/search/photos';
+  #API_KEY = 'LxvKVGJqiSe6NcEVZOaLXC-f2JIIWZaq_o0WrF8mwJc';
 
-1. Створюємо змінні:
+  #page;
+  #searchQuery;
+  #totalPages;
 
-- `list` - знаходить елемент списку у HTML-документі за допомогою класу "list";
-- `moreBlock` - знаходить кнопку у HTML-документі за допомогою класу "more";
-- `page` - зберігає номер поточної сторінки, яка буде відображатися;
-- `limit` - зберігає кількість дописів, які будуть завантажуватися за раз;
-- `totalPages` - зберігає загальну кількість сторінок, які будуть завантажуватися.
+  #searchParams = new URLSearchParams({
+    per_page: 30,
+    client_id: this.#API_KEY,
+    color: 'black',
+    orientation: 'portrait',
+  });
 
-2. Створюємо функції:
+  constructor() {
+    this.#page = 1;
+    this.#searchQuery = '';
+    this.#totalPages = 0;
+  }
 
-- `fetchPosts()` - звертається до зовнішнього API за допомогою HTTP-запитів для отримання даних про дописи з використанням параметрів `_limit` і `_page`. Після того, як запит виконано успішно, повертається об'єкт з даними дописів у форматі JSON.
-- `loadItems()` - визначає, чи досягнуто кінця списку, і викликає функцію `fetchPosts()`, щоб отримати дані про дописи для завантаження на сторінку. Після завантаження дописів, збільшується значення змінної `page`, створюється розмітка з дописами і вставляється на сторінку.
-- `observer` - створює новий екземпляр IntersectionObserver, який слідкує за тим, чи досягнуто кінця списку, та викликає функцію `loadItems()` для завантаження наступних дописі
+    getImages() {
+      return fetch(`${this.#BASE_URL}?query=${this.#searchQuery}&page=${this.#page}&${this.#searchParams}`).then(res => {
+        if (res.ok) {
+          return res.json()
+        }
+        throw new Error(res.statusText)
+      })
+    }
+  
+
+  get page() {
+    return this.#page;
+  }
+
+  set page(newPage) {
+    this.#page = newPage;
+  }
+
+  set searchQuery(newQuery) {
+    this.#searchQuery = newQuery;
+  }
+
+  get searchQuery() {
+    return this.#searchQuery;
+  }
+
+  get totalPages() {
+    return this.#totalPages;
+  }
+    set totalPages() {
+    return this.#totalPages;
+  }
+
+}
+
+const refs = {
+  form: document.querySelector('.js-search-form'),
+  list: document.querySelector('.js-gallery'),
+  loadMoreBlock: document.querySelector('.more'),
+};
+
+const { form, list, loadMoreBlock } = refs;
+
+const unsplashApi = new UnsplashAPI();
+
+
+function createGalleryCards(images) {
+  return images
+    .map(
+      ({ urls, alt_description }) => `<li class="gallery__item">
+        <img src="${urls.small}" alt="${alt_description}" class="gallery-img">
+    </li>`
+    )
+    .join('');
+}
+
+function loadMoreItems() {}
+
+function handleSubmit() {}
+
+form.addEventListener('submit', handleSubmit);
+
+```
