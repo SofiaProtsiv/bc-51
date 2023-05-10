@@ -110,14 +110,14 @@ class UnsplashAPI {
     this.#totalPages = 0;
   }
 
-    getImages() {
-      return fetch(`${this.#BASE_URL}?query=${this.#searchQuery}&page=${this.#page}&${this.#searchParams}`).then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-        throw new Error(res.statusText)
-      })
-    }
+  getImages() {
+    return fetch(`${this.#BASE_URL}?query=${this.#searchQuery}&page=${this#page}&${this.#searchParams}`).then(res => {
+      if (res.ok) {
+        return res.json()
+      }
+      throw new Error(res.statusText)
+    })
+  }
   
 
   get page() {
@@ -128,33 +128,32 @@ class UnsplashAPI {
     this.#page = newPage;
   }
 
-  set searchQuery(newQuery) {
-    this.#searchQuery = newQuery;
-  }
-
   get searchQuery() {
     return this.#searchQuery;
+  }
+
+  set searchQuery(newQuery) {
+    this.#searchQuery = newQuery;
   }
 
   get totalPages() {
     return this.#totalPages;
   }
-    set totalPages() {
-    return this.#totalPages;
-  }
 
+  set totalPages(newTotalPages) {
+    this.#totalPages = newTotalPages;
+  }
 }
 
 const refs = {
   form: document.querySelector('.js-search-form'),
   list: document.querySelector('.js-gallery'),
-  loadMoreBlock: document.querySelector('.more'),
+  loadMoreBlock: document.querySelector('.target-element'),
 };
 
 const { form, list, loadMoreBlock } = refs;
 
 const unsplashApi = new UnsplashAPI();
-
 
 function createGalleryCards(images) {
   return images
@@ -171,5 +170,4 @@ function loadMoreItems() {}
 function handleSubmit() {}
 
 form.addEventListener('submit', handleSubmit);
-
 ```
