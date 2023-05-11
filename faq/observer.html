@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinite scroll</title>
+  </head>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+        Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      height: 100vh;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    ul {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+
+    .list {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1280px;
+      padding-left: 30px;
+      padding-right: 30px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-section {
+      padding: 60px 0;
+    }
+
+    .search-form {
+      display: flex;
+      width: 600px;
+      margin: 0 auto;
+      margin-bottom: 40px;
+    }
+
+    .search-input {
+      border: none;
+      outline: none;
+      padding: 0.3em 1em;
+      border-radius: 24px;
+      background: #a4a4a42b;
+      color: #000000;
+      font-family: inherit;
+      font-size: 1.25rem;
+      width: calc(100% - 100px);
+    }
+
+    .load-more {
+      display: block;
+      font-size: 14px;
+      padding: 10px 20px;
+      background: #7c7c7c2b;
+      color: #000;
+      border: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-left: 10px;
+      margin: 0 auto;
+      transition: background 0.2s ease-in-out;
+    }
+
+    .load-more:hover {
+      background: #e7f0ffdf;
+    }
+
+    .load-more.is-hidden {
+      display: none;
+    }
+
+    .gallery {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-left: -30px;
+      margin-top: -30px;
+      margin-bottom: 20px;
+    }
+
+    .gallery__item {
+      flex-basis: calc((100% - 120px) / 4);
+      margin-left: 30px;
+      margin-top: 30px;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      max-width: unset;
+      object-fit: cover;
+    }
+
+    #search_btn {
+      margin: 0.5em;
+      border-radius: 50%;
+      border: none;
+      height: 44px;
+      width: 44px;
+      outline: none;
+      background: #7c7c7c2b;
+      color: #000;
+      cursor: pointer;
+      transition: background 0.2s ease-in-out;
+    }
+
+    #search_btn:hover {
+      background: #e7f0ffdf;
+    }
+    .more {
+      display: none;
+    }
+    .more.is-visible {
+      display: block;
+    }
+  </style>
+
+  <body>
+    <section class="gallery-section">
+      <div class="container">
+        <form class="search-form js-search-form">
+          <input type="text" name="query" class="search-input" />
+          <button id="search_btn">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              height="1.5em"
+              width="1.5em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+              ></path>
+            </svg>
+          </button>
+        </form>
+
+        <ul class="gallery js-gallery list"></ul>
+
+        <div class="more">Loading ...</div>
+      </div>
+    </section>
+
+    <script>
+      class UnsplashAPI {
+        #BASE_URL = "https://api.unsplash.com/search/photos";
+        #API_KEY = "LxvKVGJqiSe6NcEVZOaLXC-f2JIIWZaq_o0WrF8mwJc";
+
+        #page;
+        #searchQuery;
+
+        #searchParams = new URLSearchParams({
+          per_page: 30,
+          client_id: this.#API_KEY,
+          color: "black",
+          orientation: "portrait",
+        });
+
+        constructor() {
+          this.#page = 1;
+          this.#searchQuery = "";
+        }
+
+        async getImages() {
+          const response = await fetch(
+            `${this.#BASE_URL}?query=${this.#searchQuery}&page=${this.#page}&${
+              this.#searchParams
+            }`
+          );
+
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+
+          const data = await response.json();
+          return data;
+        }
+
+        get page() {
+          return this.#page;
+        }
+
+        set page(newPage) {
+          this.#page = newPage;
+        }
+
+        set searchQuery(newQuery) {
+          this.#searchQuery = newQuery;
+        }
+
+        get searchQuery() {
+          return this.#searchQuery;
+        }
+      }
+
+      const refs = {
+        form: document.querySelector(".js-search-form"),
+        list: document.querySelector(".js-gallery"),
+        loadMoreBlock: document.querySelector(".more"),
+      };
+
+      const { form, list, loadMoreBlock } = refs;
+
+      const unsplashApi = new UnsplashAPI();
+
+      let observer = new IntersectionObserver(callback);
+
+      function callback(entries, observer) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadMoreItems();
+          }
+        });
+      }
+
+      let totalPages = 0;
+
+      function createGalleryCards(images) {
+        return images
+          .map(
+            ({ urls, alt_description }) => `<li class="gallery__item">
+        <img src="${urls.small}" alt="${alt_description}" class="gallery-img">
+    </li>`
+          )
+          .join("");
+      }
+
+      async function loadMoreItems() {
+        const response = await unsplashApi.getImages();
+
+        if (!response.results.length) {
+          loadMoreBlock.classList.remove("is-visible");
+          return
+        };
+
+        totalPages = response.total_pages;
+
+        const markup = createGalleryCards(response.results);
+        list.insertAdjacentHTML("beforeend", markup);
+
+        unsplashApi.page += 1;
+
+        if (unsplashApi.page > totalPages) {
+          loadMoreBlock.classList.remove("is-visible");
+          observer.unobserve(loadMoreBlock);
+          return;
+        }
+      }
+
+      async function handleSubmit(e) {
+        e.preventDefault();
+        const query = e.currentTarget.elements.query.value.trim();
+
+        if (!query) return;
+
+        unsplashApi.searchQuery = query;
+        unsplashApi.page = 1;
+        list.innerHTML = "";
+
+        loadMoreBlock.classList.add("is-visible");
+        observer.observe(loadMoreBlock);
+      }
+
+      form.addEventListener("submit", handleSubmit);
+    </script>
+  </body>
+</html>
